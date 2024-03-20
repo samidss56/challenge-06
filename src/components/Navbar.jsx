@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import {
-  Button,
-  Container,
-  Navbar,
-  Nav,
-  Form,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Button, Navbar, Nav, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
@@ -22,6 +14,7 @@ const NavbarComponent = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const { isLoggedIn, user } = useSelector((state) => state.auth);
 
@@ -32,7 +25,6 @@ const NavbarComponent = () => {
   useEffect(() => {
     dispatch(getPostSearch(searchResults));
   }, [dispatch, searchResults]);
-  console.log(searchResults);
 
   const logout = (event) => {
     event.preventDefault();
@@ -46,68 +38,59 @@ const NavbarComponent = () => {
     <>
       <Navbar
         className="navbar"
-        bg="trasnparent navbar-expand-lg fixed-top p-2"
+        bg="transparent"
+        expand="lg"
+        fixed="top"
+        variant="dark"
       >
-        <Container fluid>
-          <Navbar.Brand
-            className="logo text-danger mx-4"
-            as={Link}
-            to={"/home"}
-          >
-            <h2>
-              <strong style={{ marginLeft: "3.7rem" }}>MovieList</strong>
-            </h2>
+        <div className="navbar-wrapper">
+          <Navbar.Brand className="logo" as={Link} to={"/home"}>
+            <strong>MovieList</strong>
           </Navbar.Brand>
-          <Form inline>
-            <Row>
-              <Col xs="auto">
-                <Form.Control
-                  type="text"
-                  placeholder="Search"
-                  className="Movie-search mr-sm-2"
-                  onChange={({ target }) => setSearchResults(target.value)}
-                  variant="outline-danger"
-                  style={{ background: "transparent", color: "white" }}
-                ></Form.Control>
-              </Col>
-            </Row>
+          <Form>
+            <Form.Control
+              type="text"
+              placeholder="Search"
+              className="movie-search"
+              onChange={({ target }) => setSearchResults(target.value)}
+              variant="outline-danger"
+            />
           </Form>
-          <Nav className="buttons">
-            {isLoggedIn ? (
-              <>
-                <Nav.Link as={Link} to="/home" style={{ color: "white" }}>
-                  Hi, {user?.name}
-                </Nav.Link>
-                <Button
-                  onClick={logout}
-                  style={{ marginRight: "4.8rem", color: "white" }}
-                  variant="outline-danger"
-                  className="logout"
-                >
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  variant="outline-danger"
-                  className="login"
-                  onClick={() => setShowLogin(true)}
-                >
-                  Login
-                </Button>
-                <Button
-                  variant="danger"
-                  className="register"
-                  style={{ marginRight: "4.8rem" }}
-                  onClick={() => setShowRegister(true)}
-                >
-                  Register
-                </Button>
-              </>
-            )}
-          </Nav>
-        </Container>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            onClick={() => setIsExpanded(!isExpanded)}
+          />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto"></Nav>
+            <Nav className="buttons">
+              {isLoggedIn ? (
+                <>
+                  <Nav.Link as={Link} to="/home">
+                    Hi, {user?.name}
+                  </Nav.Link>
+                  <Button onClick={logout} variant="outline-danger">
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => setShowLogin(true)}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => setShowRegister(true)}
+                  >
+                    Register
+                  </Button>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </div>
       </Navbar>
       <Login show={showLogin} onHide={() => setShowLogin(false)} />
       <Register show={showRegister} onHide={() => setShowRegister(false)} />

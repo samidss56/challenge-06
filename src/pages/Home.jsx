@@ -14,32 +14,31 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { posts } = useSelector((state) => state.post);
-  console.log(posts);
+  // console.log(posts);
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const { postsSearch } = useSelector((state) => state.post);
-  console.log(postsSearch);
+  // console.log(postsSearch);
 
   const PopularMovieList = () => {
     const moviesToDisplay = postsSearch?.length >= 3 ? postsSearch : posts;
     return (
-      <div className="Movie-container">
+      <div className="movie-wrapper-home">
         {moviesToDisplay &&
           moviesToDisplay?.length > 0 &&
           moviesToDisplay.map((post) => (
-            <Col md={2} key={post.id} className="mx-4">
+            <div key={post.id}>
               <Link to={`/detail/${post.id}`}>
                 <img
-                  className="Movie-image"
+                  className="movie-image-home"
                   src={`https://image.tmdb.org/t/p/w200/${post.poster_path}`}
                   alt={post.title}
-                  style={{ width: "200px", borderRadius: "10px" }}
                 />
               </Link>
-            </Col>
+            </div>
           ))}
       </div>
     );
@@ -56,29 +55,15 @@ const Home = () => {
       <HomeCarousel />
 
       <div className="App mt-2 mb-4">
-        <header className="App-header d-flex">
-          <Row>
-            <Col md={6}>
-              <h3
-                className="text-start mt-4"
-                style={{ marginLeft: "6.5rem", color: "black" }}
-              >
-                <strong>Popular Movies</strong>
-              </h3>
-            </Col>
-            <Col md={6}>
-              <h6
-                className="text-end mt-4 align-content-center text-danger"
-                style={{ marginRight: "6.5rem" }}
-              >
-                See All Movies
-                <ArrowRight className="icon-arrow"></ArrowRight>
-              </h6>
-            </Col>
-          </Row>
-          <br />
-          <PopularMovieList />
-        </header>
+        <div className="movie-headlines py-3">
+          <h5 className="text-dark fw-bold my-0">Popular Movies</h5>
+          <div className="all-movies d-flex justify-content-between align-items-center gap-2">
+            <h5 className="text-danger fw-bold my-0">See All Movies</h5>
+            <ArrowRight className="icon-arrow text-danger"></ArrowRight>
+          </div>
+        </div>
+        <br />
+        <PopularMovieList />
       </div>
 
       <Footer />
