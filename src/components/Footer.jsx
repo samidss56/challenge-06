@@ -1,4 +1,4 @@
-import { CDBModalFooter, CDBBtn, CDBIcon, CDBBox } from "cdbreact";
+import { CDBBtn, CDBIcon, CDBBox } from "cdbreact";
 
 export const Footer = () => {
   return (

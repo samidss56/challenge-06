@@ -43,8 +43,8 @@ const NavbarComponent = () => {
         fixed="top"
         variant="dark"
       >
-        <div className="navbar-wrapper">
-          <Navbar.Brand className="logo" as={Link} to={"/home"}>
+        <div className="navbar-logo-input">
+          <Navbar.Brand className="navbar-logo" as={Link} to={"/home"}>
             <strong>MovieList</strong>
           </Navbar.Brand>
           <Form>
@@ -57,40 +57,48 @@ const NavbarComponent = () => {
             />
           </Form>
           <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
+            aria-controls="navbar-toggle"
             onClick={() => setIsExpanded(!isExpanded)}
           />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto"></Nav>
-            <Nav className="buttons">
-              {isLoggedIn ? (
-                <>
-                  <Nav.Link as={Link} to="/home">
-                    Hi, {user?.name}
-                  </Nav.Link>
-                  <Button onClick={logout} variant="outline-danger">
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    variant="outline-danger"
-                    onClick={() => setShowLogin(true)}
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => setShowRegister(true)}
-                  >
-                    Register
-                  </Button>
-                </>
-              )}
-            </Nav>
-          </Navbar.Collapse>
         </div>
+        <Navbar.Collapse id="navbar-toggle">
+          <Nav className=""></Nav>
+          <Nav className="navbar-buttons">
+            {isLoggedIn ? (
+              <>
+                <Nav.Link as={Link} to="/home">
+                  <p className="text-white fw-bolder my-0 text-center">
+                    Hi, {user?.name}
+                  </p>
+                </Nav.Link>
+                <Button
+                  onClick={logout}
+                  variant="outline-danger"
+                  className="logout-btn"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="outline-danger"
+                  onClick={() => setShowLogin(true)}
+                  className="login-btn"
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => setShowRegister(true)}
+                  className="register-btn"
+                >
+                  Register
+                </Button>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
       <Login show={showLogin} onHide={() => setShowLogin(false)} />
       <Register show={showRegister} onHide={() => setShowRegister(false)} />

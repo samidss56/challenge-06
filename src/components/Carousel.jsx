@@ -9,7 +9,7 @@ const HomeCarousel = () => {
           src="https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/hZkgoQYus5vegHoetLkCJzb17zJ.jpg"
           alt="First slide"
         />
-        <Carousel.Caption className="movie-caption-home">
+        <Carousel.Caption className="carousel-caption-home">
           <h3>Fight Club</h3>
           <p>A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy.</p>
         </Carousel.Caption>

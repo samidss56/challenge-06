@@ -11,7 +11,7 @@ const WelcomePage = () => {
       <Carousel className="carousel-welcome" controls={false}>
         <Carousel.Item>
           <img
-            className="d-block w-100 welcome-page"
+            className="carousel-image-welcome"
             src={WelcomePageImage}
             alt="First slide"
           />

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import HomeCarousel from "../components/Carousel";
 import NavbarComponent from "../components/Navbar";
 import { ArrowRight } from "react-bootstrap-icons";
-import { Row, Col } from "react-bootstrap";
 import { getAllPosts } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
 

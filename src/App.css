@@ -1,33 +1,62 @@
-html {
-  /* overflow-x: hidden; */
-}
-.login,
-.register,
-.logout {
-  border-radius: 20px;
-}
+/* NAVBAR START */
 .navbar {
   backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
 }
-.navbar-wrapper {
+.navbar-brand {
+  transition: 0.5s ease-in-out;
+}
+.navbar-logo {
+  color: red;
+}
+.navbar-logo-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  /* gap: 15rem; */
-  max-width: 100%;
+  padding: 1rem 10rem;
+  width: 60%;
   margin: auto;
 }
-
+.navbar-collapse {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+}
 .movie-search {
   border-radius: 20px;
   border: 2px solid rgb(255, 0, 0);
-  /* padding: 15px; */
-  /* width: 200%; */
+  width: 200%;
   height: 35px;
   background-color: transparent;
   color: white;
 }
+.form-control:focus {
+  background: transparent;
+  color: white;
+}
+.navbar-buttons {
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.login-btn {
+  border-radius: 20px;
+  transition: 0.5s ease-in-out;
+}
+
+.register-btn {
+  border-radius: 20px;
+  transition: 0.5s ease-in-out;
+}
+
+.logout-btn {
+  border-radius: 20px;
+  transition: 0.5s ease-in-out;
+}
+/* NAVBAR END */
+
+/* LOGIN, REGISTER FORM MODAL START */
 .login-form,
 .login-google,
 .register-form {
@@ -37,51 +66,45 @@ html {
   margin: 0 auto;
   text-align: center;
 }
-
 .link-register {
   display: flex;
   margin: 0 auto;
   text-align: center;
 }
-
-.App {
-  text-align: center;
+.login-modal {
+  overflow-x: hidden;
 }
-
-.App-header {
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.register-modal {
+  overflow-x: hidden;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-.text {
-  text-align: center;
-}
-
-.logo {
-  color: red;
-}
-
-.Movie-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.Movie-wrapper {
-  width: 250px;
+.email-form,
+.name-form,
+.password-form {
+  border-radius: 20px;
+  border: 2px solid rgb(255, 0, 0);
+  padding: 15px;
+  width: 400px;
+  height: 35px;
+  background-color: transparent;
   color: black;
-  border-radius: 10px;
 }
+/* LOGIN, REGISTER FORM MODAL END */
 
+/* WELCOME PAGE START */
+.carousel-image-welcome {
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
+}
+/* WELCOME PAGE END */
+
+/* CAROUSEL HOME START */
+.carousel-image-home {
+  width: 100%;
+}
+/* CAROUSEL HOME END */
+
+/* MOVIE LIST START */
 .movie-wrapper-home {
   display: grid;
   gap: 20px;
@@ -100,62 +123,57 @@ html {
   align-items: center;
   padding: 0 3rem;
 }
+/* MOVIE LIST END */
 
-.Movie-rate {
+/* DETAIL MOVIE START */
+.carousel-detail {
+  position: relative;
+}
+.carousel-detail::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-image-detail {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+.movie-description-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 20px;
+  color: white;
+  z-index: 1;
+  padding: 5rem;
+}
+.movie-image-detail {
+  border-radius: 15px;
+  width: 20%;
+  justify-self: start;
+}
+.movie-description {
+  margin: 20px 0;
+}
+.movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: yellow;
+  margin: 20px 0;
 }
-.Movie-caption {
-  margin-left: 0px;
-}
-.carousel-detail .Movie-caption-detail {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding-left: 6.5rem;
-  padding-right: 15rem;
-  padding-top: 3rem;
-  text-align: start;
-  box-sizing: border-box;
-}
-.carousel-image-home {
-  width: 100%;
-}
-
-.Movie-wrapper-detail {
-  width: 200px;
-}
-.login-modal {
-  overflow-x: hidden;
-}
-.register-modal {
-  overflow-x: hidden;
-}
-.Movie-caption-button {
+.movie-button-detail {
   border-radius: 20px;
 }
-.email-form,
-.name-form,
-.password-form {
-  border-radius: 20px;
-  border: 2px solid rgb(255, 0, 0);
-  padding: 15px;
-  width: 400px;
-  height: 35px;
-  background-color: transparent;
-  color: black;
-}
-.carousel-welcome .Movie-caption-welcome {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding-top: 31rem;
-  box-sizing: border-box;
-}
+/* DETAIL MOVIE END */
 
+/* FOOTER START */
 .footer-wrapper {
   display: flex;
   justify-content: space-between;
@@ -164,6 +182,22 @@ html {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
     rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+/* FOOTER END */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
 }
 
 @media (max-width: 768px) {
@@ -188,12 +222,35 @@ html {
     height: 350px;
     object-fit: cover;
   }
+  .movie-search {
+    width: 100%;
+  }
   .movie-caption-home {
     width: 100%;
     justify-self: center;
     padding: 0 20px;
   }
-  .buttons {
+  .navbar-logo-input {
+    width: auto;
+    padding: 20px;
+    gap: 10px;
+  }
+  .navbar-buttons {
+    width: 100%;
     visibility: visible;
+  }
+  .carousel-image-detail {
+    width: 100%;
+    object-fit: cover;
+    height: 95vh;
+  }
+  .movie-description-wrapper {
+    width: 100%;
+    padding: 7rem 20px;
+    left: 0;
+    top: 0;
+  }
+  .movie-image-detail {
+    width: 40%;
   }
 }

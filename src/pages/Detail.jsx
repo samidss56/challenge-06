@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPostDetails } from "../redux/actions/postActions";
 
 function Detail() {
-  const [ setSearchResults] = useState([]);
+  const [setSearchResults] = useState([]);
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -30,32 +30,32 @@ function Detail() {
       <Carousel className="carousel-detail" controls={false}>
         <Carousel.Item>
           <img
-            className="Carousel-img d-block w-100"
+            className="carousel-image-detail"
             src={`https://image.tmdb.org/t/p/original/${postDetails?.backdrop_path}`}
             alt="First slide"
           />
-          <Carousel.Caption className="Movie-caption-detail">
-            <div
-              className="Movie-wrapper-detail mb-2 mx-1"
-              key={postDetails?.id}
-            >
+          <div className="movie-description-wrapper">
+            <div className="movie-image-wrapper-detail" key={postDetails?.id}>
               <img
-                className="Movie-image mt-4"
+                className="movie-image-detail"
                 src={`https://image.tmdb.org/t/p/original/${postDetails?.poster_path}`}
                 alt=""
-                style={{ width: "185px", borderRadius: "10px" }}
               />
             </div>
-            <h2 className="Movie-caption-title">{postDetails?.title}</h2>
-            <p className="Movie-caption-text">{postDetails?.overview}</p>
-            <p className="Movie-rate">
-              <StarFill className="Icon-star" />
-              {postDetails?.vote_average.toFixed(1)}/ 10
-            </p>
-            <Button className="Movie-caption-button" variant="outline-danger">
-              Watch Trailer
-            </Button>
-          </Carousel.Caption>
+            <div className="movie-description">
+              <h2 className="movie-title-detail">{postDetails?.title}</h2>
+              <p className="movie-description-detail">
+                {postDetails?.overview}
+              </p>
+              <div className="movie-rating">
+                <StarFill className="Icon-star" />
+                {postDetails?.vote_average.toFixed(1)} / 10
+              </div>
+              <Button className="movie-button-detail" variant="outline-danger">
+                Watch Trailer
+              </Button>
+            </div>
+          </div>
         </Carousel.Item>
       </Carousel>
 
