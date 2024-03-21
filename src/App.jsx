@@ -7,6 +7,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import WelcomePage from "./pages/WelcomePage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/detail/:id" element={<Detail />} />
             </Routes>
+            <ToastContainer theme="colored" />
           </BrowserRouter>
         </GoogleOAuthProvider>
       </Provider>

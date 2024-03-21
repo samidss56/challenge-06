@@ -6,7 +6,7 @@ import NavbarComponent from "../components/Navbar";
 import { ArrowRight } from "react-bootstrap-icons";
 import { getAllPosts } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
-
+import { motion } from "framer-motion";
 const Home = () => {
   const [setSearchResults] = useState([]);
 
@@ -29,7 +29,7 @@ const Home = () => {
         {moviesToDisplay &&
           moviesToDisplay?.length > 0 &&
           moviesToDisplay.map((post) => (
-            <div key={post.id}>
+            <motion.div key={post.id} whileHover={{ scale: 1.05 }}>
               <Link to={`/detail/${post.id}`}>
                 <img
                   className="movie-image-home"
@@ -37,7 +37,7 @@ const Home = () => {
                   alt={post.title}
                 />
               </Link>
-            </div>
+            </motion.div>
           ))}
       </div>
     );

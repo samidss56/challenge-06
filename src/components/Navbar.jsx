@@ -45,7 +45,7 @@ const NavbarComponent = () => {
       >
         <div className="navbar-logo-input">
           <Navbar.Brand className="navbar-logo" as={Link} to={"/home"}>
-            <strong>MovieList</strong>
+            <h3>MovieList</h3>
           </Navbar.Brand>
           <Form>
             <Form.Control
