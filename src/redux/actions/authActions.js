@@ -21,11 +21,11 @@ export const registerLoginWithGoogle =
 
       const response = await axios.request(config);
       const { token } = response.data.data;
-
+      
       dispatch(setToken(token));
       dispatch(setIsLoggedIn(true));
       dispatch(getMe(null, null, null));
-
+      
       toast.success("Login Success");
       navigate("/home");
     } catch (error) {
@@ -96,16 +96,15 @@ export const login = (data, navigate) => async (dispatch) => {
       },
       data: data,
     };
-
+    
     const response = await axios.request(config);
     const { token } = response.data.data;
     
     dispatch(setToken(token));
     dispatch(setIsLoggedIn(true));
     dispatch(getMe(null, null, null));
+    
     toast.success("Login Success");
-    
-    
     navigate("/home");
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -133,8 +132,8 @@ export const register = (data, navigate) => async (dispatch) => {
     dispatch(setToken(token));
     dispatch(setIsLoggedIn(true));
     dispatch(getMe(null, null, null));
-    toast.success("Register Success");
     
+    toast.success("Register Success");
     navigate("/home");
   } catch (error) {
     if (axios.isAxiosError(error)) {
