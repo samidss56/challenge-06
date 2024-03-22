@@ -15,7 +15,6 @@ function Detail() {
   const { id } = useParams();
 
   const { postDetails } = useSelector((state) => state.post);
-  // console.log(postDetails);
 
   useEffect(() => {
     dispatch(getPostDetails(id));

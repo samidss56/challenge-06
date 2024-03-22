@@ -13,14 +13,12 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { posts } = useSelector((state) => state.post);
-  // console.log(posts);
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const { postsSearch } = useSelector((state) => state.post);
-  // console.log(postsSearch);
 
   const PopularMovieList = () => {
     const moviesToDisplay = postsSearch?.length >= 3 ? postsSearch : posts;
