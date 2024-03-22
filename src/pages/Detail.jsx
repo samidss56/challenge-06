@@ -15,6 +15,7 @@ function Detail() {
   const { id } = useParams();
 
   const { postDetails } = useSelector((state) => state.post);
+  // console.log(postDetails);
 
   useEffect(() => {
     dispatch(getPostDetails(id));
@@ -22,6 +23,14 @@ function Detail() {
 
   const handleSearchResults = (results) => {
     setSearchResults(results);
+  };
+
+  const youtubeUrl = () => {
+    const url =
+      postDetails?.videos?.length > 0
+        ? `https://www.youtube.com/embed/${postDetails.videos[0].key}`
+        : "";
+    return url;
   };
 
   return (
@@ -52,11 +61,21 @@ function Detail() {
               <p className="movie-description-detail">
                 {postDetails?.overview}
               </p>
+              <div className="movie-genres">
+                {postDetails?.genres.map((genre, index) => (
+                  <p key={index}>{genre.name}</p>
+                ))}
+              </div>
               <div className="movie-rating">
                 <StarFill className="Icon-star" />
                 {postDetails?.vote_average.toFixed(1)} / 10
               </div>
-              <Button className="movie-button-detail" variant="danger">
+              <Button
+                href={youtubeUrl()}
+                target="_blank"
+                className="movie-button-detail"
+                variant="danger"
+              >
                 Watch Trailer
               </Button>
             </div>

@@ -152,7 +152,7 @@
 }
 .movie-description-wrapper {
   position: absolute;
-  top: 20px;
+  top: 40px;
   padding: 20px;
   color: white;
   z-index: 1;
@@ -173,6 +173,23 @@
   border-radius: 15px;
   width: 70%;
   justify-self: start;
+}
+.movie-genres {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: red;
+  margin: 20px 0;
+}
+.movie-genres p {
+  margin: 0;
+  padding: 7px;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  color: white;
+  border: 1.5px solid red;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .movie-rating {
   display: flex;
@@ -262,7 +279,7 @@
   .carousel-image-detail {
     width: 100%;
     object-fit: cover;
-    height: 100vh;
+    height: 105vh;
   }
   .movie-description-wrapper {
     width: 100%;
@@ -273,6 +290,9 @@
   .movie-image-detail {
     width: 150%;
     margin-left: 50px;
+  }
+  .movie-genres {
+    overflow-x: scroll;
   }
   .movie-description {
     width: 100%;
