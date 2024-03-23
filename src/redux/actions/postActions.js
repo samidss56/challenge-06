@@ -6,17 +6,16 @@ import {
 } from "../reducers/postReducers";
 import { toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API;
+
 export const getAllPosts = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(
-      `${import.meta.env.VITE_API}/v1/movie/popular`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${apiUrl}/v1/movie/popular`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     dispatch(setPosts(response.data.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -30,14 +29,11 @@ export const getAllPosts = () => async (dispatch) => {
 export const getPostDetails = (id) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(
-      `${import.meta.env.VITE_API}/v1/movie/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${apiUrl}/v1/movie/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     dispatch(setPostDetails(response.data.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -55,7 +51,7 @@ export const getPostSearch = (q) => async (dispatch) => {
       if (!token) return;
 
       const response = await axios.get(
-        `${import.meta.env.VITE_API}/v1/search/movie?page=1&query=${q}`,
+        `${apiUrl}/v1/search/movie?page=1&query=${q}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

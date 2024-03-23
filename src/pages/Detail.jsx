@@ -25,10 +25,13 @@ function Detail() {
     setSearchResults(results);
   };
 
+  const imageUrl = import.meta.env.VITE_BACKDROP_PATH_URL;
+  const trailerUrl = import.meta.env.VITE_YOUTUBE_URL;
+
   const youtubeUrl = () => {
     const url =
       postDetails?.videos?.length > 0
-        ? `https://www.youtube.com/embed/${postDetails.videos[0].key}`
+        ? `${trailerUrl}${postDetails.videos[0].key}`
         : "";
     return url;
   };
@@ -41,7 +44,7 @@ function Detail() {
         <Carousel.Item>
           <img
             className="carousel-image-detail"
-            src={`https://image.tmdb.org/t/p/original/${postDetails?.backdrop_path}`}
+            src={`${imageUrl}${postDetails?.backdrop_path}`}
             alt="First slide"
           />
           <div className="movie-description-wrapper">
@@ -52,7 +55,7 @@ function Detail() {
             >
               <img
                 className="movie-image-detail"
-                src={`https://image.tmdb.org/t/p/original/${postDetails?.poster_path}`}
+                src={`${imageUrl}${postDetails?.poster_path}`}
                 alt=""
               />
             </motion.div>

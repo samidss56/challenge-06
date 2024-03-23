@@ -20,6 +20,8 @@ const Home = () => {
 
   const { postsSearch } = useSelector((state) => state.post);
 
+  const imageUrl = import.meta.env.VITE_POSTER_PATH_URL;
+
   const PopularMovieList = () => {
     const moviesToDisplay = postsSearch?.length >= 3 ? postsSearch : posts;
     return (
@@ -27,11 +29,15 @@ const Home = () => {
         {moviesToDisplay &&
           moviesToDisplay?.length > 0 &&
           moviesToDisplay.map((post) => (
-            <motion.div key={post.id} whileHover={{ scale: 1.05 }}>
+            <motion.div
+              key={post.id}
+              whileHover={{ scale: 1.05 }}
+              className="movie-card-home"
+            >
               <Link to={`/detail/${post.id}`}>
                 <img
                   className="movie-image-home"
-                  src={`https://image.tmdb.org/t/p/w200/${post.poster_path}`}
+                  src={`${imageUrl}${post.poster_path}`}
                   alt={post.title}
                 />
               </Link>
@@ -51,7 +57,7 @@ const Home = () => {
 
       <HomeCarousel />
 
-      <div className="App mt-2 mb-4">
+      <div className="my-3">
         <div className="movie-headlines py-3">
           <h5 className="text-dark fw-bold my-0">Popular Movies</h5>
           <div className="all-movies d-flex justify-content-between align-items-center gap-2">

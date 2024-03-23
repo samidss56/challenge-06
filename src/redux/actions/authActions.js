@@ -2,6 +2,8 @@ import { setIsLoggedIn, setToken, setUser } from "../reducers/authReducers";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API;
+
 export const registerLoginWithGoogle =
   (accessToken, navigate) => async (dispatch) => {
     try {
@@ -12,7 +14,7 @@ export const registerLoginWithGoogle =
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: `${import.meta.env.VITE_API}/v1/auth/google`,
+        url: `${apiUrl}/v1/auth/google`,
         headers: {
           "Content-Type": "application/json",
         },
@@ -21,11 +23,11 @@ export const registerLoginWithGoogle =
 
       const response = await axios.request(config);
       const { token } = response.data.data;
-      
+
       dispatch(setToken(token));
       dispatch(setIsLoggedIn(true));
       dispatch(getMe(null, null, null));
-      
+
       toast.success("Login Success");
       navigate("/home");
     } catch (error) {
@@ -56,14 +58,11 @@ export const getMe =
 
       if (!token) return;
 
-      const response = await axios.get(
-        `${import.meta.env.VITE_API}/v1/auth/me`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/v1/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = response.data.data;
 
@@ -90,20 +89,20 @@ export const login = (data, navigate) => async (dispatch) => {
   try {
     let config = {
       method: "post",
-      url: `${import.meta.env.VITE_API}/v1/auth/login`,
+      url: `${apiUrl}/v1/auth/login`,
       headers: {
         "Content-Type": "application/json",
       },
       data: data,
     };
-    
+
     const response = await axios.request(config);
     const { token } = response.data.data;
-    
+
     dispatch(setToken(token));
     dispatch(setIsLoggedIn(true));
     dispatch(getMe(null, null, null));
-    
+
     toast.success("Login Success");
     navigate("/home");
   } catch (error) {
@@ -119,7 +118,7 @@ export const register = (data, navigate) => async (dispatch) => {
   try {
     let config = {
       method: "post",
-      url: `${import.meta.env.VITE_API}/v1/auth/register`,
+      url: `${apiUrl}/v1/auth/register`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -128,11 +127,11 @@ export const register = (data, navigate) => async (dispatch) => {
 
     const response = await axios.request(config);
     const { token } = response.data.data;
-    
+
     dispatch(setToken(token));
     dispatch(setIsLoggedIn(true));
     dispatch(getMe(null, null, null));
-    
+
     toast.success("Register Success");
     navigate("/home");
   } catch (error) {

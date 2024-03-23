@@ -1,6 +1,7 @@
 /* NAVBAR START */
 .navbar {
   backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
 }
@@ -12,6 +13,10 @@
   color: red;
   font-weight: 700;
   margin-bottom: 0;
+  transition: 0.5s;
+}
+.navbar-logo h3:hover {
+  color: white;
 }
 .navbar-logo-input {
   display: flex;
@@ -118,6 +123,11 @@
   grid-template-columns: repeat(5, 1fr);
   padding: 0 2rem;
 }
+.movie-card-home {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
 
 .movie-image-home {
   border-radius: 15px;
@@ -142,7 +152,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .carousel-image-detail {
@@ -216,21 +226,7 @@
 }
 /* FOOTER END */
 
-.App {
-  text-align: center;
-}
-
-.App-header {
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
+/* MOBILE RESPONSIVE START */
 @media (max-width: 768px) {
   /* NAVBAR START */
   .navbar-logo-input {
@@ -257,6 +253,10 @@
   .movie-image-home {
     width: 90%;
   }
+  .movie-card-home a {
+    display: flex;
+    justify-content: center;
+  }
   .carousel-image-home {
     width: 100%;
     height: 60vh;
@@ -279,7 +279,7 @@
   .carousel-image-detail {
     width: 100%;
     object-fit: cover;
-    height: 105vh;
+    height: 135vh;
   }
   .movie-description-wrapper {
     width: 100%;
@@ -294,6 +294,9 @@
   .movie-genres {
     overflow-x: scroll;
   }
+  .movie-genres::-webkit-scrollbar {
+    display: none;
+  }
   .movie-description {
     width: 100%;
   }
@@ -306,3 +309,4 @@
   }
   /* FOOTER END */
 }
+/* MOBILE RESPONSIVE END */

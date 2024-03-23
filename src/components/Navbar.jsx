@@ -38,7 +38,6 @@ const NavbarComponent = () => {
     <>
       <Navbar
         className="navbar"
-        bg="transparent"
         expand="lg"
         fixed="top"
         variant="dark"
