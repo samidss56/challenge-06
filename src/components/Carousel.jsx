@@ -1,44 +1,54 @@
-import { Carousel } from "react-bootstrap";
+import { useEffect } from "react";
+import { Carousel, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts } from "../redux/actions/postActions";
+import { PlayFill } from "react-bootstrap-icons";
 
 const HomeCarousel = () => {
+  const dispatch = useDispatch();
+
+  const { posts } = useSelector((state) => state.post);
+  console.log(posts);
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
+
+  const imageUrl = import.meta.env.VITE_BACKDROP_PATH_URL;
+  const trailerUrl = import.meta.env.VITE_YOUTUBE_URL;
+  const movieCarousel = posts?.filter((post) => post?.backdrop_path);
+
   return (
-    <Carousel className="carousel-home" controls={false}>
-      <Carousel.Item className="carousel-item">
-        <img
-          className="carousel-image-home"
-          src="https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/hZkgoQYus5vegHoetLkCJzb17zJ.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption className="carousel-caption-home">
-          <h3>Fight Club</h3>
-          <p>A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="carousel-image-home"
-          src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/tmU7GeKVybMWFButWEGl2M4GeiP.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption className="movie-caption-home">
-          <h3>The Godfather</h3>
-          <p>Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="carousel-image-home"
-          src="https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/hrzoy8vvUrxQixOM11pwW9AX7Bu.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption className="movie-caption-home">
-          <h3>The Many Saints Of Newark</h3>
-          <p>
-          Young Anthony Soprano is growing up in one of the most tumultuous eras in Newark, N.J.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+    <div>
+      <Carousel className="carousel-home" controls={false}>
+        {movieCarousel.slice(2, 5).map((post) => (
+          <Carousel.Item key={post?.id}>
+            <img
+              className="carousel-image-home"
+              src={`${imageUrl}${post?.backdrop_path}`}
+              alt="First slide"
+            />
+            <div className="movie-description-wrapper-carousel">
+              <div className="movie-description-carousel">
+                <h2>{post?.title}</h2>
+                <p className="m-0">
+                  {post?.overview.split(" ").slice(0, 20).join(" ")}...
+                </p>
+                <Button
+                  href={`${trailerUrl}${post?.videos[0]?.key}`}
+                  target="_blank"
+                  className="movie-button-home"
+                  variant="danger"
+                >
+                  Watch Trailer
+                  <PlayFill className="movie-button-icon"/>
+                </Button>
+              </div>
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
   );
 };
 

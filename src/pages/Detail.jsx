@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Carousel } from "react-bootstrap";
-import { StarFill } from "react-bootstrap-icons";
+import { PlayFill, StarFill } from "react-bootstrap-icons";
 import { Footer } from "../components/Footer";
 import NavbarComponent from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
@@ -80,6 +80,7 @@ function Detail() {
                 variant="danger"
               >
                 Watch Trailer
+                <PlayFill className="movie-button-icon"/>
               </Button>
             </div>
           </div>

@@ -49,7 +49,7 @@ const NavbarComponent = () => {
           <Form>
             <Form.Control
               type="text"
-              placeholder="Search"
+              placeholder="Search here"
               className="movie-search"
               onChange={({ target }) => setSearchResults(target.value)}
               variant="outline-danger"
